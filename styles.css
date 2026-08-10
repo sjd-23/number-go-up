@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=Radio+Canada:ital,wght@0,300..700;1,300..700&display=swap');
+
+.radio-canada {
+    font-family: "Radio Canada", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    font-variation-settings:
+            "wdth" 100;
+}
+
+:root {
+    --color-body-background: #373737;
+    --color-footer-text: #c1c1c1;
+    --color-footer-background: #252525;
+    --color-scrollbar: #d3d3d3;
+    --color-score-information: #777777;
+    --color-shop-border: #a6a6a6;
+    --color-shop-title: #ffffff;
+    --color-shop-title-background: #272727;
+    --color-shop-background: #454545;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--color-scrollbar);
+}
+
+.hidden {
+    display: none;
+}
+
+body {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    grid-template-areas:
+        "main"
+        "footer";
+    min-height: 100vh;
+    font-family: 'Radio Canada', sans-serif;
+    overflow: hidden;
+    background-color: var(--color-body-background);
+    user-select: none;
+}
+
+main {
+    grid-area: main;
+}
+
+.game-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.score {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 50pt;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.shop-box {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    max-height: calc(100% - 40px);
+    overflow-y: auto;
+    width: 300px;
+    border: 2px solid var(--color-shop-border);
+    background: var(--color-shop-background);
+}
+
+.shop-title {
+    color: var(--color-shop-title);
+    font-size: 20pt;
+    font-weight: bold;
+    text-align: center;
+    padding: 5px;
+    white-space: nowrap;
+    background: var(--color-shop-title-background);
+    border-bottom: 2px dotted var(--color-shop-border);
+}
+
+.shop-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 4px;
+    height: 100%;
+}
+
+.shop-item {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    color: #ffffff;
+}
+
+.shop-item-unaffordable {
+    text-decoration: line-through;
+    .shop-item-name {
+        cursor: default;
+    }
+}
+
+.shop-item-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.shop-item-bot {
+    text-align: left;
+}
+
+.shop-item-name {
+    cursor: pointer;
+}
+
+.shop-item-price {
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.shop-item-desc {
+    font-size: 0.85em;
+    font-style: italic;
+    opacity: 0.75;
+}
+
+.inventory-box {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    max-height: calc(100% - 40px);
+    overflow-y: auto;
+    width: 300px;
+    border: 2px solid var(--color-shop-border);
+    background: var(--color-shop-background);
+}
+
+.inventory-title {
+    color: var(--color-shop-title);
+    font-size: 20pt;
+    font-weight: bold;
+    text-align: center;
+    padding: 5px;
+    white-space: nowrap;
+    background: var(--color-shop-title-background);
+    border-bottom: 2px dotted var(--color-shop-border);
+}
+
+.inventory-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    color: #ffffff;
+}
+
+footer {
+    grid-area: footer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--color-footer-background);
+    color: var(--color-footer-text);
+    padding: 3px;
+}
+
+.footer-title-version {
+    font-style: italic;
+}
+
+.footer-tagline {
+    display: inline-block;
+    opacity: 0.5;
+}
+
+.footer-repo {
+    color: inherit;
+    text-decoration: none;
+    display: inline-block;
+    opacity: 0.5;
+}
+.footer-repo:hover {
+    opacity: 1;
+    text-decoration: underline;
+}
