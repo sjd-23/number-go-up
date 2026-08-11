@@ -51,6 +51,7 @@ export class Game {
 
     canReveal(id) {
         const item = ITEMS[id];
+        if (!item.toReveal) return false;
 
         if (item.toReveal.type === 'amount') {
             if (item.toReveal.amount > this.resources[item.toReveal.resource]) return false;
@@ -109,7 +110,7 @@ export class Game {
             base += (item.amount / item.interval) * this.owned[id];
         }
 
-        return base * this.multiplierFor(resource);
+        return base * this.multiplierFor();
     }
 
     clickPower() {
@@ -135,6 +136,7 @@ export class Game {
 
     checkItemVisibility() {
         for (const id in ITEMS) {
+            if (this.revealed[id]) continue;
             if (this.canReveal(id)) this.revealed[id] = true;
         }
     }

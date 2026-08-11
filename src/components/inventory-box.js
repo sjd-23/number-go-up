@@ -1,17 +1,16 @@
 export class InventoryBox {
-    constructor(container, game) {
+    constructor(game) {
         this.el = this.#createElement();
         this.game = game;
-        container.append(this.el);
     }
 
     #createElement() {
         const el = document.createElement("div");
-        el.classList.add("inventory-box");
+        el.classList.add("box");
 
         const titleEl = document.createElement("p");
         titleEl.textContent = "Inventory";
-        titleEl.classList.add("inventory-title");
+        titleEl.classList.add("box-title");
         el.appendChild(titleEl);
 
         return el;

@@ -30,6 +30,7 @@
 
 ::-webkit-scrollbar {
     width: 5px;
+    height: 5px;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -75,18 +76,36 @@ main {
     border-bottom: 5px solid var(--color-magnitude);
 }
 
-.shop-box {
+.column {
     position: absolute;
-    left: 20px;
+    display: flex;
     top: 20px;
+    gap: 20px;
+    flex-direction: column;
     max-height: calc(100% - 40px);
     overflow-y: auto;
+    overflow-x: hidden;
     width: 350px;
+}
+
+.column-left {
+    left: 20px;
+}
+
+.column-right {
+    right: 20px;
+}
+
+.box {
+    width: 100%;
+    flex-shrink: 0;
+    max-height: calc(100% - 40px);
+    overflow-y: auto;
     border: 2px solid var(--color-shop-border);
     background: var(--color-shop-background);
 }
 
-.shop-title {
+.box-title {
     color: var(--color-shop-title);
     font-size: 20pt;
     font-weight: bold;
@@ -143,37 +162,46 @@ main {
     opacity: 0.75;
 }
 
-.inventory-box {
-    position: absolute;
-    right: 20px;
-    top: 20px;
-    max-height: calc(100% - 40px);
-    overflow-y: auto;
-    width: 350px;
-    border: 2px solid var(--color-shop-border);
-    background: var(--color-shop-background);
-}
-
-.inventory-title {
-    color: var(--color-shop-title);
-    font-size: 20pt;
-    font-weight: bold;
-    text-align: center;
-    padding: 5px;
-    white-space: nowrap;
-    background: var(--color-shop-title-background);
-    border-bottom: 2px dotted var(--color-shop-border);
+.inventory-list {
+    padding: 4px;
 }
 
 .inventory-item {
     display: flex;
     justify-content: space-between;
-    padding: 5px;
     color: #ffffff;
 }
 
 .inventory-item-count {
     color: var(--color-inventory-quantity);
+}
+
+.effects-list {
+    display: flex;
+    flex-direction: column;
+    padding: 4px;
+    height: 100%;
+}
+
+.effect-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.effect-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.effect-name {
+    color: #ffffff;
+}
+
+.effect-data {
+    white-space: nowrap;
+    flex-shrink: 0;
+    color: #ffffff
 }
 
 footer {
