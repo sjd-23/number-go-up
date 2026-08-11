@@ -1,8 +1,11 @@
+import {RESOURCES} from "../resources.js";
+
 export class ShopItem {
     constructor(item, game) {
         this.item = item
         this.game = game
         this.priceEl = document.createElement("span")
+        this.descEl = document.createElement("span")
         this.el = this.#createElement();
     }
 
@@ -25,18 +28,25 @@ export class ShopItem {
         const botRow = document.createElement("span");
         botRow.classList.add("shop-item-bot");
 
-        const descEl = document.createElement("span");
-        descEl.classList.add("shop-item-desc");
-        descEl.textContent = this.item.description;
+        this.descEl.classList.add("shop-item-desc");
 
-        botRow.append(descEl);
+        botRow.append(this.descEl);
 
         el.append(topRow, botRow);
+
         return el;
     }
 
     render() {
-        this.priceEl.textContent = `${this.game.priceOf(this.item.id)} pts.`;
+        this.el.classList.toggle("hidden", !this.game.isRevealed(this.item.id));
+
+        const effect = this.game.effectOf(this.item.id);
+        this.descEl.textContent = this.item.description.replace("{X}", effect.toFixed(2));
+
+        const price = this.game.priceOf(this.item.id);
+        this.priceEl.textContent = Object.entries(price)
+            .map(([resource, n]) => `${n} ${RESOURCES[resource].short}.`)
+            .join(", ");
         this.el.classList.toggle("shop-item-unaffordable", !this.game.canAfford(this.item.id));
     }
 }

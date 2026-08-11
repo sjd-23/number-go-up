@@ -10,7 +10,7 @@ export class InventoryBox {
         el.classList.add("inventory-box");
 
         const titleEl = document.createElement("p");
-        titleEl.textContent = "inventory";
+        titleEl.textContent = "Inventory";
         titleEl.classList.add("inventory-title");
         el.appendChild(titleEl);
 

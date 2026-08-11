@@ -1,4 +1,4 @@
-import { Score } from "./components/score.js";
+import { Magnitude } from "./components/magnitude.js";
 import { ShopBox } from "./components/shop-box.js";
 import { ShopList } from "./components/shop-list.js"
 import { ShopItem } from "./components/shop-item.js";
@@ -10,23 +10,26 @@ import {InventoryList} from "./components/inventory-list.js";
 const game = new Game();
 const container = document.getElementById("game-container")
 
-const score = new Score(container, game);
+const magnitude = new Magnitude(container, game);
 const shopBox = new ShopBox(container);
 const shopList = new ShopList(shopBox);
 const inventoryBox = new InventoryBox(container, game);
 const inventoryList = new InventoryList(inventoryBox, game);
 
-const basicAdditive = new ShopItem(ITEMS["basicAdditive"], game);
-shopList.addItem(basicAdditive);
+for (const id in ITEMS) {
+    shopList.addItem(new ShopItem(ITEMS[id], game));
+}
 
-const views = [score, shopList, inventoryBox, inventoryList];
+const views = [magnitude, shopList, inventoryBox, inventoryList];
+
 let last = performance.now();
-
 function loop(now) {
-    const dt = (now - last) / 1000;
+    const dt = Math.min((now - last) / 1000, 1);
     last = now;
+    game.checkItemVisibility();
     game.tick(dt);
-    for (const view of views) view.render();
+    for (const view of views)
+        view.render();
     requestAnimationFrame(loop);
 }
 requestAnimationFrame(loop);

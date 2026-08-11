@@ -9,7 +9,7 @@ export class ShopBox {
         el.classList.add("shop-box");
 
         const titleEl = document.createElement("p");
-        titleEl.textContent = "shop";
+        titleEl.textContent = "Shop";
         titleEl.classList.add("shop-title");
         el.appendChild(titleEl);
 
